@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.pressy4pie.f6utilities2"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <uses-sdk
+        android:minSdkVersion="16"
+        android:targetSdkVersion="16" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" >
+        <activity
+            android:name="com.pressy4pie.f6utilities2.MainActivity"
+            android:label="@string/app_name" >
+        </activity>
+        <activity
+            android:name="com.pressy4pie.f6utilities2.Activity_recoveryInstaller"
+            android:label="@string/title_activity_activity_recovery_installer" >
+        </activity>
+        <activity
+            android:name="com.pressy4pie.f6utilities2.RecoveryInstallerActivity"
+            android:label="@string/title_activity_recovery_installer" >
+        </activity>
+        <activity
+            android:name="com.pressy4pie.f6utilities2.RecoveryUninstallerActivity"
+            android:label="@string/title_activity_recovery_uninstaller" >
+        </activity>
+        <activity
+            android:name="com.pressy4pie.f6utilities2.SDhacksActivity"
+            android:label="@string/title_activity_sdhacks" >
+        </activity>
+        <activity
+            android:name="com.pressy4pie.f6utilities2.InfoActivity"
+            android:label="@string/title_activity_info" >
+        </activity>
+        <activity
+            android:name="com.pressy4pie.f6utilities2.FormatActivity"
+            android:label="@string/title_activity_format" >
+        </activity>
+        <activity
+            android:name="com.pressy4pie.f6utilities2.SplashScreen"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.pressy4pie.f6utilities2.RootActivity"
+            android:label="@string/title_activity_root" >
+        </activity>
+        <activity
+            android:name="com.pressy4pie.f6utilities2.SDhacksErrorActivity"
+            android:label="@string/title_activity_sdhacks_error" >
+        </activity>
+    </application>
+
+</manifest>

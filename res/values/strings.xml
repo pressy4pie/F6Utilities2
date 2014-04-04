@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">F6Utilities2</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="welcome">Use at your own risk. I have put a lot of 
+        work into this app, but there is still a potiential to 
+        break stuff.</string>
+    <string name="recovery_installer">Install CWM Recovery</string>
+    <string name="recovery_uninstaller">Restore Stock Recovery</string>
+    <string name="rebooter">Reboot to Recovery</string>
+    <string name="SD_Stuff">SD Card Data Hack</string>
+    <string name="title_activity_activity_recovery_installer">CWM Recovery by PressY4pie</string>
+    <string name="title_activity_recovery_installer">CWM Installer</string>
+    <string name="recoveryDisclaimer">This will probably void your waranty, and you will need to be rooted. </string>
+    <string name="install">INSTALL CWM</string>
+    <string name="title_activity_recovery_uninstaller">Restore To Stock</string>
+    <string name="title_activity_sdhacks">SD Card Hacks</string>
+    <string name="uninstall">Restore to Stock</string>
+    <string name="stockDisclaimer">This will restore you to LGs STOCK recovery</string>
+    <string name="wip">THIS IS A WORK IN PROGRESS AND NOT WORKING YET</string>
+    <string name="format">SD Card Formatter</string>
+    <string name="SDhacks_installer">Change the Data Partition</string>
+    <string name="SDhacks_restore">Restore the Original Data Partition</string>
+    <string name="info">Dev Info</string>
+    <string name="title_activity_info">Developer Info</string>
+    <string name="title_activity_format">Formatter</string>
+    <string name="FormatDisclaimer">THIS AWILL FORMAT YOUR SDCARD. ONLY PROCEED IF YOU ARE READY FOR THAT</string>
+    <string name="format_4gig">4 gig Data Partition</string>
+    <string name="format_2gig">2 gig Data Partition</string>
+    <string name="format_1gig">1 gig Data Partition</string>
+    <string name="title_activity_splash_screen">SplashScreen</string>
+    <string name="root">Attempt to Get Root</string>
+    <string name="title_activity_root">Get Root</string>
+    <string name="root_disclaimer">This will try to root your f6. It may or may not work. If it doesn\'t, just use saferoot from a pc.</string>
+    <string name="start_root">Attempt To Root</string>
+    <string name="title_activity_sdhacks_error">SDhacksErrorActivity</string>
+    <string name="sderror">I detected that your SD Card is already formatted or that Links2SD is already in place. This hack is not compatible with that. Factory Reset and delete any other partitions.</string>
+    <string name="error_format">Format the Second Partition</string>
+    <string name="clickme">Click ME</string>
+
+</resources>
