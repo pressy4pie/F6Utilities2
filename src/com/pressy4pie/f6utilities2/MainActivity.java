@@ -12,9 +12,12 @@ import java.io.IOException;
 
 import android.os.Bundle;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 //import android.content.Context;
 import android.content.Intent;
+import android.view.LayoutInflater;
 //import android.content.pm.PackageManager;
 //import android.content.pm.PackageManager.NameNotFoundException;
 //import android.content.res.AssetManager;
@@ -31,6 +34,20 @@ public class MainActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+		//get the device name.
+		String device = root_tools.readProp("ro.product.board");
+		
+		if(!device.equals("f6mt")){
+		 AlertDialog.Builder IncorrectDevice = new AlertDialog.Builder(this);
+         //IncorrectDevice.setIcon(R.drawable.warn);
+         IncorrectDevice.setTitle("Wrong Device!");
+         IncorrectDevice.setMessage("You are probably not running this application on the LG Optimus F6. Please note that this application is intended to run on the LG Optimus F6. If you are using a LG Optimus F6, please contact your ROM developer and tell him, that the \nro.product.name is set wrong");
+         IncorrectDevice.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+             public void onClick(DialogInterface dialog, int which) {
+             }
+         });
+         IncorrectDevice.show();
+		}
 
 	}
 
@@ -72,6 +89,20 @@ public class MainActivity extends Activity {
 	public void rebooter(View view){
 		root_tools.execute("reboot recovery");
 	}
+	
+	public void info(View view) {
+        AlertDialog.Builder about = new AlertDialog.Builder(this);
+        LayoutInflater inflater = getLayoutInflater();
+        about.setTitle(R.string.title_activity_info);
+        //about.setIcon(R.drawable.apple);
+        about.setView(inflater.inflate(R.layout.activity_info, null));
+        about.setNegativeButton("Close", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                dialog.cancel();
+            }
+        });
+        about.show();
+    }
 	
 	
 

@@ -77,13 +77,13 @@ public class RooterActivity extends Activity {
 
 public void start(View view){
 	Runtime rt = Runtime.getRuntime();
-	try {
-		Process q = rt.exec(new String("chmod 0755 /data/data/com.pressy4pie.f6utilities2/saferoot/getroot.sh"));
+		/*
+		Process q = rt.exec(new String("/system/bin/sh chmod 0755 /data/data/com.pressy4pie.f6utilities2/saferoot/getroot.sh"));
 		Process p = rt.exec(new String("/data/data/com.pressy4pie.f6utilities2/saferoot/getroot.sh"));
-	} catch (IOException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
-	}
+		*/
+		
+		root_tools.executeAsSH("chmod 0755 /data/data/com.pressy4pie.f6utilities2/saferoot/getroot.sh");
+		root_tools.executeAsSH("/data/data/com.pressy4pie.f6utilities2/saferoot/getroot.sh");
 }
 
 }

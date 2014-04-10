@@ -1,7 +1,10 @@
-#!/system/bin/
+#!/system/bin/sh
 
-tmpdir=/data/local/tmp
+tmpdir=/data/data/com.pressy4pie.f6utilities2/saferoot/tmp
 rootdir=/data/data/com.pressy4pie.f6utilities2/saferoot
+
+
+mkdir $tmpdir
 
 cp $rootdir/getroot $tmpdir
 cp $rootdir/su $tmpdir
@@ -18,8 +21,8 @@ SU="/system/xbin/su"
 
 $SU -c pm disable com.sec.knox.seandroid
 $SU -c mount -o remount,rw /system
-$SU -c rm -f /system/etc/install-recovery-2.sh
-$SU -c rm -f /system/xbin/selinuxoff
+$SU -c rm /system/etc/install-recovery-2.sh
+$SU -c rm /system/xbin/selinuxoff
 
 $SU -c chmod 6755 /system/xbin/su
 $SU -c chmod 6755 /system/xbin/daemonsu

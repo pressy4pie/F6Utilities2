@@ -45,12 +45,13 @@ public final class R {
         public static final int uninstalling_progress_bar=0x7f08000d;
     }
     public static final class layout {
-        public static final int activity_main=0x7f030000;
-        public static final int activity_recovery_installer=0x7f030001;
-        public static final int activity_recovery_uninstaller=0x7f030002;
-        public static final int activity_rooter=0x7f030003;
-        public static final int activity_sdhacks=0x7f030004;
-        public static final int activity_splash_screen=0x7f030005;
+        public static final int activity_info=0x7f030000;
+        public static final int activity_main=0x7f030001;
+        public static final int activity_recovery_installer=0x7f030002;
+        public static final int activity_recovery_uninstaller=0x7f030003;
+        public static final int activity_rooter=0x7f030004;
+        public static final int activity_sdhacks=0x7f030005;
+        public static final int activity_splash_screen=0x7f030006;
     }
     public static final class menu {
         public static final int activity_recovery_installer=0x7f070000;
@@ -81,6 +82,7 @@ public final class R {
         public static final int format_4gig=0x7f050018;
         public static final int hello_world=0x7f050002;
         public static final int info=0x7f050014;
+        public static final int info_main=0x7f050028;
         public static final int install=0x7f05000b;
         public static final int rebooter=0x7f050006;
         public static final int recoveryDisclaimer=0x7f05000a;

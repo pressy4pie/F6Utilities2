@@ -65,9 +65,7 @@ public class SplashScreen extends Activity {
 		 
         @Override
         protected void onPreExecute() {
-            super.onPreExecute();
-
-            // before making http calls         
+            super.onPreExecute();       
  
         }
  
