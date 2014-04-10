@@ -24,28 +24,30 @@ public final class R {
         public static final int ic_launcher=0x7f020000;
     }
     public static final class id {
-        public static final int RecoveryLinearLayout=0x7f080007;
-        public static final int StockLinearLayout=0x7f08000a;
-        public static final int action_settings=0x7f08000f;
-        public static final int btn_main_cwm=0x7f080002;
-        public static final int btn_main_rebooter=0x7f080005;
-        public static final int btn_main_sdhacks=0x7f080004;
-        public static final int btn_main_stock=0x7f080003;
-        public static final int btn_recoveryInstaller_Install=0x7f080008;
-        public static final int btn_recoveryUninstaller_Uninstaller=0x7f08000b;
-        public static final int button1=0x7f08000d;
-        public static final int info=0x7f080006;
+        public static final int RecoveryLinearLayout=0x7f080008;
+        public static final int StockLinearLayout=0x7f08000b;
+        public static final int action_settings=0x7f080011;
+        public static final int btn_main_cwm=0x7f080003;
+        public static final int btn_main_rebooter=0x7f080007;
+        public static final int btn_main_rooter=0x7f080006;
+        public static final int btn_main_sdhacks=0x7f080005;
+        public static final int btn_main_stock=0x7f080004;
+        public static final int btn_recoveryInstaller_Install=0x7f080009;
+        public static final int btn_recoveryUninstaller_Uninstaller=0x7f08000c;
+        public static final int button1=0x7f08000f;
+        public static final int info=0x7f080002;
         public static final int linearLayout1=0x7f080001;
-        public static final int progressBar1=0x7f08000e;
+        public static final int progressBar1=0x7f080010;
+        public static final int rootbutton=0x7f08000e;
         public static final int textView1=0x7f080000;
-        public static final int textViewUninstaller=0x7f080009;
-        public static final int uninstalling_progress_bar=0x7f08000c;
+        public static final int textViewUninstaller=0x7f08000a;
+        public static final int uninstalling_progress_bar=0x7f08000d;
     }
     public static final class layout {
-        public static final int activity_info=0x7f030000;
-        public static final int activity_main=0x7f030001;
-        public static final int activity_recovery_installer=0x7f030002;
-        public static final int activity_recovery_uninstaller=0x7f030003;
+        public static final int activity_main=0x7f030000;
+        public static final int activity_recovery_installer=0x7f030001;
+        public static final int activity_recovery_uninstaller=0x7f030002;
+        public static final int activity_rooter=0x7f030003;
         public static final int activity_sdhacks=0x7f030004;
         public static final int activity_splash_screen=0x7f030005;
     }
@@ -57,9 +59,10 @@ public final class R {
         public static final int recovery_installer=0x7f070004;
         public static final int recovery_uninstaller=0x7f070005;
         public static final int root=0x7f070006;
-        public static final int sdhacks=0x7f070007;
-        public static final int sdhacks_error=0x7f070008;
-        public static final int splash_screen=0x7f070009;
+        public static final int rooter=0x7f070007;
+        public static final int sdhacks=0x7f070008;
+        public static final int sdhacks_error=0x7f070009;
+        public static final int splash_screen=0x7f07000a;
     }
     public static final class string {
         public static final int FormatDisclaimer=0x7f050017;
@@ -83,8 +86,10 @@ public final class R {
         public static final int recovery_uninstaller=0x7f050005;
         public static final int root=0x7f05001c;
         public static final int root_disclaimer=0x7f05001e;
+        public static final int rootme=0x7f050026;
         public static final int sderror=0x7f050021;
         public static final int start_root=0x7f05001f;
+        public static final int startroot=0x7f050024;
         public static final int stockDisclaimer=0x7f05000f;
         public static final int title_activity_activity_recovery_installer=0x7f050008;
         public static final int title_activity_format=0x7f050016;
@@ -92,6 +97,7 @@ public final class R {
         public static final int title_activity_recovery_installer=0x7f050009;
         public static final int title_activity_recovery_uninstaller=0x7f05000c;
         public static final int title_activity_root=0x7f05001d;
+        public static final int title_activity_rooter=0x7f050025;
         public static final int title_activity_sdhacks=0x7f05000d;
         public static final int title_activity_sdhacks_error=0x7f050020;
         public static final int title_activity_splash_screen=0x7f05001b;

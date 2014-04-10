@@ -58,6 +58,10 @@
             android:name="com.pressy4pie.f6utilities2.SDhacksErrorActivity"
             android:label="@string/title_activity_sdhacks_error" >
         </activity>
+        <activity
+            android:name="com.pressy4pie.f6utilities2.RooterActivity"
+            android:label="@string/title_activity_rooter" >
+        </activity>
     </application>
 
 </manifest>

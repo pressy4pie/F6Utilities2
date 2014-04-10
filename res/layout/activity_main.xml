@@ -8,44 +8,6 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".MainActivity" >
 
-    <LinearLayout
-        android:paddingTop="15dp"
-        android:id="@+id/linearLayout1"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:layout_alignParentLeft="true"
-        android:gravity="center"
-        android:orientation="vertical" >
-
-        <Button
-            android:id="@+id/btn_main_cwm"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/recovery_installer"
-            android:onClick="recoveryInstaller" />
-        
-        <Button
-            android:id="@+id/btn_main_stock"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/recovery_uninstaller"
-            android:onClick="recoveryUninstaller" />    
-            
-        <Button
-            android:id="@+id/btn_main_sdhacks"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/SD_Stuff"
-            android:onClick="sdhacks" />   
-
-        <Button
-            android:id="@+id/btn_main_rebooter"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/rebooter"
-            android:onClick="rebooter" />
-    </LinearLayout>
-
     <TextView
         android:id="@+id/textView1"
         android:layout_width="wrap_content"
@@ -64,5 +26,51 @@
         android:layout_centerHorizontal="true"
         android:text="@string/info"
         android:onClick="info" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout1"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_alignLeft="@+id/textView1"
+        android:layout_alignParentBottom="true"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:paddingTop="15dp" >
+
+        <Button
+            android:id="@+id/btn_main_cwm"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:onClick="recoveryInstaller"
+            android:text="@string/recovery_installer" />
+
+        <Button
+            android:id="@+id/btn_main_stock"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:onClick="recoveryUninstaller"
+            android:text="@string/recovery_uninstaller" />
+
+        <Button
+            android:id="@+id/btn_main_sdhacks"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:onClick="sdhacks"
+            android:text="@string/SD_Stuff" />
+        
+        <Button
+            android:id="@+id/btn_main_rooter"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:onClick="startroot"
+            android:text="@string/startroot" />
+
+        <Button
+            android:id="@+id/btn_main_rebooter"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:onClick="rebooter"
+            android:text="@string/rebooter" />
+    </LinearLayout>
 
 </RelativeLayout>

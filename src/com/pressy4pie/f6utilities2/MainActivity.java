@@ -58,53 +58,19 @@ public class MainActivity extends Activity {
 	
 	
 	public void sdhacks(View view){
-		boolean vip = root_tools.isVIP();
-		boolean connor = root_tools.isPressy4pie();
-		
+		//the sdhack installer. This neeeds quite a bit of work
 		Intent intent = new Intent(this, SDhacksActivity.class);
-		
-		
-		if(vip == true){
-			//check if apps2sd is installed
+		startActivity(intent);
 			
-			if(connor == true)
-			{
-				Context context = getApplicationContext();
-				CharSequence text = "Welcome, Connor";
-				int duration = Toast.LENGTH_SHORT;
-				Toast Connor = Toast.makeText(context, text, duration);
-				Connor.show();
-				
-				startActivity(intent);
-			}
-			
-			else {
-			Context context = getApplicationContext();
-			CharSequence text = "Welcome, VIP";
-			int duration = Toast.LENGTH_SHORT;
-			Toast VIP = Toast.makeText(context, text, duration);
-			VIP.show();
-			
-			startActivity(intent);
-			}
-			
-		}
-		
-		else {
-			Context context = getApplicationContext();
-			CharSequence text = "This is still a WIP, and your no VIP";
-			int duration = Toast.LENGTH_SHORT;
-			Toast noVIP = Toast.makeText(context, text, duration);
-			noVIP.show();
-			
-			//dont start the intent
-		}
-		
 	}
 	
-	public void info(View view){
-		Intent intent = new Intent(this, InfoActivity.class);
+	public void startroot(View view){
+		Intent intent = new Intent(this, RooterActivity.class);
 		startActivity(intent);
+	}
+	
+	public void rebooter(View view){
+		root_tools.execute("reboot recovery");
 	}
 	
 	

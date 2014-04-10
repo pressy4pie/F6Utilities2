@@ -26,13 +26,15 @@ public class RecoveryInstallerActivity extends Activity {
 	
 	public void install(View view){
 		//we have to make sure the right aboot is used first...
-		
-		String cmd_aboot = "busybox dd if=/data/data/com.pressy4pie.f6utilities2/recovery/aboot.img of=/dev/block/platform/msm_sdcc.1/by-name/aboot";
+		String cmd_aboot = "busybox dd if=/data/data/com.pressy4pie.f6utilities2/recovery/aboot.img_e of=/dev/block/platform/msm_sdcc.1/by-name/aboot";
 		
 		//where the install will happen...
+		//im not using loki_flash because dd works fine and it eliminates aboot issues
 		String cmd_chmod = "busybox chmod a+x /data/data/com.pressy4pie.f6utilities2/recovery/loki_flash";
-		String cmd_install = "/data/data/com.pressy4pie.f6utilities2/recovery/loki_flash recovery /data/data/com.pressy4pie.f6utilities2/recovery/pressy4pie-cwm-unofficial.lok";
 		
+		String cmd_install = "busybox dd if=/data/data/com.pressy4pie.f6utilities2/recovery/pressy4pie-cwm-unofficial.lok of=/dev/block/platform/msm_sdcc.1/by-name/recovery";
+		
+		root_tools.execute(cmd_aboot);
 		root_tools.execute(cmd_chmod);
 		root_tools.execute(cmd_install);
 		
