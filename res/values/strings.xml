@@ -38,9 +38,13 @@
     <string name="title_activity_sdhacks_error">SDhacksErrorActivity</string>
     <string name="sderror">I detected that your SD Card is already formatted or that Links2SD is already in place. This hack is not compatible with that. Factory Reset and delete any other partitions.</string>
     <string name="error_format">Format the Second Partition</string>
-    <string name="clickme">Click ME</string>
+    <string name="clickme">Click to Install</string>
     <string name="startroot">Attempt to get Root</string>
     <string name="title_activity_rooter">Getting Root</string>
     <string name="rootme">Attempt the Root</string>
+    <string name="disclaimer_sdhacks">This is still a work in progress and a very dirty 
+        hack. Don\'t hit apply if you can\'t figure out how to restore. It works by 
+        setting the second partition on your SD Card as the actual data partition. 
+        If your sdcard is formatted improperly this will result in a bootloop. </string>
 
 </resources>

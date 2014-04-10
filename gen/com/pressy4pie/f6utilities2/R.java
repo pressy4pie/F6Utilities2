@@ -26,7 +26,7 @@ public final class R {
     public static final class id {
         public static final int RecoveryLinearLayout=0x7f080008;
         public static final int StockLinearLayout=0x7f08000b;
-        public static final int action_settings=0x7f080011;
+        public static final int action_settings=0x7f080012;
         public static final int btn_main_cwm=0x7f080003;
         public static final int btn_main_rebooter=0x7f080007;
         public static final int btn_main_rooter=0x7f080006;
@@ -37,9 +37,10 @@ public final class R {
         public static final int button1=0x7f08000f;
         public static final int info=0x7f080002;
         public static final int linearLayout1=0x7f080001;
-        public static final int progressBar1=0x7f080010;
+        public static final int progressBar1=0x7f080011;
         public static final int rootbutton=0x7f08000e;
         public static final int textView1=0x7f080000;
+        public static final int textView2=0x7f080010;
         public static final int textViewUninstaller=0x7f08000a;
         public static final int uninstalling_progress_bar=0x7f08000d;
     }
@@ -72,6 +73,7 @@ public final class R {
         public static final int action_settings=0x7f050001;
         public static final int app_name=0x7f050000;
         public static final int clickme=0x7f050023;
+        public static final int disclaimer_sdhacks=0x7f050027;
         public static final int error_format=0x7f050022;
         public static final int format=0x7f050011;
         public static final int format_1gig=0x7f05001a;

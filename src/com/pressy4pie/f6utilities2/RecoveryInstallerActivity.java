@@ -1,5 +1,7 @@
 package com.pressy4pie.f6utilities2;
 
+import java.io.File;
+
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Context;
@@ -15,6 +17,7 @@ public class RecoveryInstallerActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_recovery_installer);
+
 	}
 
 	@Override
@@ -22,6 +25,8 @@ public class RecoveryInstallerActivity extends Activity {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.recovery_installer, menu);
 		return true;
+
+		
 	}
 	
 	public void install(View view){
@@ -30,12 +35,10 @@ public class RecoveryInstallerActivity extends Activity {
 		
 		//where the install will happen...
 		//im not using loki_flash because dd works fine and it eliminates aboot issues
-		String cmd_chmod = "busybox chmod a+x /data/data/com.pressy4pie.f6utilities2/recovery/loki_flash";
 		
-		String cmd_install = "busybox dd if=/data/data/com.pressy4pie.f6utilities2/recovery/pressy4pie-cwm-unofficial.lok of=/dev/block/platform/msm_sdcc.1/by-name/recovery";
+		String cmd_install = "busybox dd if=/data/data/com.pressy4pie.f6utilities2/recovery/pressy4pie-cwm-unofficial-stock-data.lok of=/dev/block/platform/msm_sdcc.1/by-name/recovery";
 		
 		root_tools.execute(cmd_aboot);
-		root_tools.execute(cmd_chmod);
 		root_tools.execute(cmd_install);
 		
 		Context context = getApplicationContext();

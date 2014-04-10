@@ -40,7 +40,7 @@ public class RooterActivity extends Activity {
         AssetManager assetManager = getAssets();
         String[] files = null;
         try {
-            files = assetManager.list("Files");
+            files = assetManager.list("saferoot");
         } catch (IOException e) {
             Log.e("Asset Copy", e.getMessage());
         }
@@ -50,8 +50,8 @@ public class RooterActivity extends Activity {
             InputStream in = null;
             OutputStream out = null;
             try {
-              in = assetManager.open("Files/"+filename);   // if files resides inside the "Files" directory itself
-              out = new FileOutputStream("/data/data/com.pressy4pie.f6utilities2/recovery/" + filename);
+              in = assetManager.open("saferoot/"+filename);   // if files resides inside the "Files" directory itself
+              out = new FileOutputStream("/data/data/com.pressy4pie.f6utilities2/saferoot/" + filename);
               copyFile(in, out);
               in.close();
               in = null;
