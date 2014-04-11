@@ -39,8 +39,6 @@ public class RooterActivity extends Activity {
 		root_tools.executeAsSH("chmod 0755 /data/data/com.pressy4pie.f6utilities2/saferoot/getroot_begin.sh");
 		root_tools.executeAsSH("chmod 0755 /data/data/com.pressy4pie.f6utilities2/saferoot/getroot");
 		
-		//root can't complete because i needs to be in /data/local/tmp
-		//root_tools.executeAsSH("chmod 0755 /data/local/tmp");
 	}
 	
 	@Override
