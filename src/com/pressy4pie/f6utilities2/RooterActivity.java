@@ -29,95 +29,20 @@ public class RooterActivity extends Activity {
 		setContentView(R.layout.activity_rooter);
 		updateBarHandler = new Handler();
 
-		
+		//create dirs to be copied to
         File dir = new File ("/data/data/com.pressy4pie.f6utilities2/saferoot");
         dir.mkdirs();
         //copy the root files
         CopyAssets();
+        
 		root_tools.executeAsSH("chmod 0755 /data/data/com.pressy4pie.f6utilities2/saferoot/getroot_finish.sh");
 		root_tools.executeAsSH("chmod 0755 /data/data/com.pressy4pie.f6utilities2/saferoot/getroot_begin.sh");
 		root_tools.executeAsSH("chmod 0755 /data/data/com.pressy4pie.f6utilities2/saferoot/getroot");
+		
+		//root can't complete because i needs to be in /data/local/tmp
 		//root_tools.executeAsSH("chmod 0755 /data/local/tmp");
 	}
 	
-	public void getRoot(){
-		//root_tools.executeAsSH("");
-		//set up directories && chmod
-		root_tools.executeAsSH("/data/data/com.pressy4pie.f6utilities2/saferoot/getroot_begin.sh");
-		
-		Log.i("getroot", "getroot_begin.sh executed...");
-		root_tools.executeAsSH("cp /data/data/com.pressy4pie.f6utilities2/saferoot/su /data/local/tmp ");
-		root_tools.executeAsSH("cp /data/data/com.pressy4pie.f6utilities2/saferoot/busybox /data/local/tmp ");
-		root_tools.executeAsSH("cp /data/data/com.pressy4pie.f6utilities2/saferoot/getroot /data/local/tmp ");
-		root_tools.executeAsSH("cp /data/data/com.pressy4pie.f6utilities2/saferoot/install-recovery.sh /data/local/tmp ");
-		
-		Log.i("getroot", "getroot and su binaries coppied");
-		
-		
-		//the actual get root
-		root_tools.executeAsSH("cd /data/local/tmp && ./getroot");
-		Log.i("getroot", "getroot executed...");
-		
-		//clean up
-		root_tools.executeAsSH("/data/data/com.pressy4pie.f6utilities2/saferoot/getroot_finish.sh");
-		Log.i("getroot", "getroot_finish.sh executed...");
-		
-	}
-	
-	public void start(View view) {
-		final ProgressDialog RingProgressDialog = ProgressDialog.show(RooterActivity.this, "Please Wait", "Rooting", true);
-		RingProgressDialog.setCancelable(false);
-		new Thread(new Runnable() {
-			@Override
-			public void run() {
-				try {
-					//stuff goes here...
-					//Thread.sleep(10000);
-					//root_tools.executeAsSH("/data/data/com.pressy4pie.f6utilities2/saferoot/getroot.sh");
-					getRoot();
-				} catch (Exception e) {
-					Log.e("root", "something went wrong");
-				}
-				RingProgressDialog.dismiss();
-			
-		}
-	}).start();	
-	}
-	
-	public void launchBarDialog(View view) {
-		barProgressDialog = new ProgressDialog(RooterActivity.this);
-		
-		barProgressDialog.setTitle("Rooting...");
-		barProgressDialog.setMessage("Root in Progress...");
-		barProgressDialog.setProgressStyle(barProgressDialog.STYLE_HORIZONTAL);
-		barProgressDialog.setProgress(0);
-		barProgressDialog.setMax(20);
-		barProgressDialog.show();
-		new Thread(new Runnable() {
-			@Override
-			public void run() {
-				try {
-					//time consuming task here
-					while ( barProgressDialog.getProgress() <= barProgressDialog.getMax() ) {
-						Thread.sleep(2000);
-						updateBarHandler.post(new Runnable() {
-						public void run() {	
-								barProgressDialog.incrementProgressBy(2);	
-							}
-						});
-						if ( barProgressDialog.getProgress() == barProgressDialog.getMax() ) {
-							barProgressDialog.dismiss();
-						}
-					}
-				} catch (Exception e) {	
-				}
-			}
-		}).start();
-	}
-
-
-	
-
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
@@ -125,6 +50,7 @@ public class RooterActivity extends Activity {
 		return true;
 	}
 	
+	//method to copy assets from "saferoot"
 	private void CopyAssets() {
         AssetManager assetManager = getAssets();
         String[] files = null;
@@ -161,20 +87,41 @@ public class RooterActivity extends Activity {
     }
     
 
-
-
-
-public void startOld(View view){
-	Runtime rt = Runtime.getRuntime();
-		/*
-		Process q = rt.exec(new String("/system/bin/sh chmod 0755 /data/data/com.pressy4pie.f6utilities2/saferoot/getroot.sh"));
-		Process p = rt.exec(new String("/data/data/com.pressy4pie.f6utilities2/saferoot/getroot.sh"));
-		*/
+    //all the work for rooting
+    public void getRoot(){
+		//set up directories && chmod
+		root_tools.executeAsSH("/data/data/com.pressy4pie.f6utilities2/saferoot/getroot_begin.sh");
+		Log.i("getroot", "getroot_begin.sh executed...");
+		Log.i("getroot", "Starting actual root now...");
 		
-		root_tools.executeAsSH("chmod 0755 /data/data/com.pressy4pie.f6utilities2/saferoot/getroot.sh");
-		root_tools.executeAsSH("/data/data/com.pressy4pie.f6utilities2/saferoot/getroot.sh");
-}
-
+		//the actual get root
+		root_tools.executeAsSH("/data/data/com.pressy4pie.f6utilities2/saferoot/getroot");
+		Log.i("getroot", "getroot executed...");
+		
+		//clean up
+		root_tools.executeAsSH("/data/data/com.pressy4pie.f6utilities2/saferoot/getroot_finish.sh");
+		Log.i("getroot", "getroot_finish.sh executed...");
+		
+	}
+	
+    //the method to start the root.
+	public void start(View view) {
+		final ProgressDialog RingProgressDialog = ProgressDialog.show(RooterActivity.this, "Please Wait", "Rooting", true);
+		RingProgressDialog.setCancelable(false);
+		new Thread(new Runnable() {
+			@Override
+			public void run() {
+				try {
+					//this is the runnable stuff for the progress bar
+					getRoot();
+				} catch (Exception e) {
+					Log.e("root", "something went wrong");
+				}
+				RingProgressDialog.dismiss();
+			
+		}
+	}).start();	
+	}
 
 }
 
