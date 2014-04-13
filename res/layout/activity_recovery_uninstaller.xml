@@ -36,14 +36,5 @@
             android:text="@string/uninstall" />
 
     </LinearLayout>
-
-    <ProgressBar
-        android:id="@+id/uninstalling_progress_bar"
-        style="?android:attr/progressBarStyleLarge"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:paddingBottom="200dp" />
     
 </RelativeLayout>

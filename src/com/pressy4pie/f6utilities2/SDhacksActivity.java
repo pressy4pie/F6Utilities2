@@ -7,7 +7,9 @@ import java.io.InputStream;
 import java.io.OutputStream;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.res.AssetManager;
 import android.util.Log;
@@ -19,6 +21,9 @@ import com.pressy4pie.f6utilities2.root_tools;
 
 public class SDhacksActivity extends Activity {
 	String tagname = "SDhacks";
+	ProgressDialog barProgressDialog;
+	Handler updateBarHandler;
+	boolean finish = false;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -36,23 +41,57 @@ public class SDhacksActivity extends Activity {
 		return true;
 	}
 	
-	public void start(View view) {
+	public boolean checkPart(){
+		File f = new File("/dev/block/mmcblk1p2");
+		if(f.exists()){
+			return true;
+		}
+		else return false;
+	}
+	
+	public void install() {
 			//user is perssy4pie
-			String kernelInstall = "busybox dd if=/data/data/com.pressy4pie.f6utilities2/sdhack/pressy4pie-cwm-unofficial-sd-data.lok of=/dev/block/platform/msm_sdcc.1/by-name/boot";
+		
+		//check for partitioned sdcard
+		boolean check = checkPart();
+		if(check == true) {
+			finish = true;
+			//if the card appears to be fine
+			String kernelInstall = "busybox dd if=/data/data/com.pressy4pie.f6utilities2/sdhack/pressy4pie-sdhack-boot.lok of=/dev/block/platform/msm_sdcc.1/by-name/boot";
 			root_tools.execute(kernelInstall);
 			Log.i(tagname, "The sdcard hack boot image was installed.");
 			
 			String recoveryInstall = "busybox dd if=/data/data/com.pressy4pie.f6utilities2/sdhack/pressy4pie-cwm-unofficial-sd-data.lok of=/dev/block/platform/msm_sdcc.1/by-name/recovery";
 			root_tools.execute(recoveryInstall);
 			Log.i(tagname, "The CWM was also installed");
+
 			
-			
-			
-			Context context = getApplicationContext();
-			CharSequence text = "The sdcard hack images were installed.";
-			int duration = Toast.LENGTH_SHORT;
-			Toast success = Toast.makeText(context, text, duration);
-			success.show();
+		}
+		
+		else {
+			//the card isnt formatted correctly
+			Log.i(tagname, "The SD card does not appear to be formatted correctly.");
+			finish = false;
+		}
+	}
+	
+    //the method to start the root.
+	public void start(View view) {
+		final ProgressDialog RingProgressDialog = ProgressDialog.show(SDhacksActivity.this, "Please Wait", "Installing SD Card Hack", true);
+		RingProgressDialog.setCancelable(false);
+		new Thread(new Runnable() {
+			@Override
+			public void run() {
+				try {
+					//this is the runnable stuff for the progress bar
+					install();
+					//respond();
+				} catch (Exception e) {
+					Log.e(tagname, "something went wrong");
+				}
+				RingProgressDialog.dismiss();
+		}
+	}).start();	
 		
 	}
 	

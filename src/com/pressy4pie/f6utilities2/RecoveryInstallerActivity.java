@@ -3,8 +3,11 @@ package com.pressy4pie.f6utilities2;
 import java.io.File;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Context;
+import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Toast;
@@ -12,6 +15,8 @@ import com.pressy4pie.f6utilities2.root_tools;
 
 
 public class RecoveryInstallerActivity extends Activity {
+	ProgressDialog barProgressDialog;
+	Handler updateBarHandler;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -29,7 +34,7 @@ public class RecoveryInstallerActivity extends Activity {
 		
 	}
 	
-	public void install(View view){
+	void install(){
 		//we have to make sure the right aboot is used first...
 		String cmd_aboot = "busybox dd if=/data/data/com.pressy4pie.f6utilities2/recovery/aboot.img_e of=/dev/block/platform/msm_sdcc.1/by-name/aboot";
 		
@@ -47,6 +52,25 @@ public class RecoveryInstallerActivity extends Activity {
 		Toast success = Toast.makeText(context, text, duration);
 		success.show();
 		
+	}
+	
+    //the method to start the root.
+	public void start(View view) {
+		final ProgressDialog RingProgressDialog = ProgressDialog.show(RecoveryInstallerActivity.this, "Please Wait", "Installing CWM", true);
+		RingProgressDialog.setCancelable(false);
+		new Thread(new Runnable() {
+			@Override
+			public void run() {
+				try {
+					//this is the runnable stuff for the progress bar
+					install();
+				} catch (Exception e) {
+					Log.e("root", "something went wrong");
+				}
+				RingProgressDialog.dismiss();
+			
+		}
+	}).start();	
 	}
 
 }

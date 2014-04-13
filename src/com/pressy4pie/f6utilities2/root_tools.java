@@ -7,6 +7,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import android.os.Bundle;
 import android.app.Activity;
@@ -21,6 +23,12 @@ import android.view.View;
 //thanks to DF1E for his SimpleExplorer and this code own thur
 public class root_tools {
 	
+	public static boolean containsIllegals(String toExamine) {
+	    Pattern pattern = Pattern.compile("[+]");
+	    Matcher matcher = pattern.matcher(toExamine);
+	    return matcher.find();
+	}
+	
 	public static BufferedReader execute(String cmd) {
         BufferedReader reader = null;
         try {
@@ -34,8 +42,7 @@ public class root_tools {
                 String err = (new BufferedReader(new InputStreamReader(
                                 process.getErrorStream()))).readLine();
                 os.flush();
-
-                if (process.waitFor() != 0 || (!"".equals(err) && null != err)) {
+                if (process.waitFor() != 0 || (!"".equals(err) && null != err && containsIllegals(err) != true) ) {
                         Log.e("Root Error", err);
                         return null;
                 }
