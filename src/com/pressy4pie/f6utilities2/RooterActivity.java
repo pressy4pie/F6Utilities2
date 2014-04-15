@@ -21,6 +21,7 @@ import android.view.View;
 public class RooterActivity extends Activity {
 	ProgressDialog barProgressDialog;
 	Handler updateBarHandler;
+	String tagname = "GetRoot";
 
 
 	@Override
@@ -52,16 +53,16 @@ public class RooterActivity extends Activity {
     public void getRoot(){
 		//set up directories && chmod
 		root_tools.executeAsSH("/data/data/com.pressy4pie.f6utilities2/saferoot/getroot_begin.sh");
-		Log.i("getroot", "getroot_begin.sh executed...");
-		Log.i("getroot", "Starting actual root now...");
+		Log.i(tagname, "getroot_begin.sh executed...");
+		Log.i(tagname, "Starting actual root now...");
 		
 		//the actual get root
 		root_tools.executeAsSH("/data/data/com.pressy4pie.f6utilities2/saferoot/getroot");
-		Log.i("getroot", "getroot executed...");
+		Log.i(tagname, "getroot executed...");
 		
 		//clean up
 		root_tools.executeAsSH("/data/data/com.pressy4pie.f6utilities2/saferoot/getroot_finish.sh");
-		Log.i("getroot", "getroot_finish.sh executed...");
+		Log.i(tagname, "getroot_finish.sh executed...");
 		
 	}
 	
@@ -76,7 +77,7 @@ public class RooterActivity extends Activity {
 					//this is the runnable stuff for the progress bar
 					getRoot();
 				} catch (Exception e) {
-					Log.e("root", "something went wrong");
+					Log.e(tagname, "something went wrong");
 				}
 				RingProgressDialog.dismiss();
 			

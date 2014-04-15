@@ -32,7 +32,7 @@
             android:id="@+id/btn_recoveryUninstaller_Uninstaller"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:onClick="uninstaller"
+            android:onClick="start"
             android:text="@string/uninstall" />
 
     </LinearLayout>

@@ -46,6 +46,14 @@
         hack. Don\'t hit apply if you can\'t figure out how to restore. It works by 
         setting the second partition on your SD Card as the actual data partition. 
         If your sdcard is formatted improperly this will result in a bootloop. </string>
-    <string name="info_main">App developer(s): <b>Pressy4pie, PlayfulGod.</b>\n\n CWM ported by: <b>Pressy4pie.</b>\n\n SDCardHack implemented by: <b> PressY4pie.</b>\n\n Root method by: <b>k1mu.</b>\n\n Special Thanks to: the <b>#oudhitsquad.</b> \n\n Extra Special Thanks: <b>requisite0</b> \n\n (What a jackass)</string>
+    <string name="info_main">App developer(s): 
+        <b>Pressy4pie, PlayfulGod.</b>\n\n CWM ported by: 
+        <b>Pressy4pie.</b>\n\n SDCardHack implemented by: 
+        <b> PressY4pie.</b>\n\n Root method by: 
+        <b>k1mu.</b>\n\n Special Thanks to: the 
+        <b>#oudhitsquad.</b> \n\n Extra Special Thanks: 
+        <b>requisite0</b> \n\n (What a jackass) \n\n Icon Artwork: <b>Robert Dobyns (Burt Slop)</b>
+        
+        </string>
 
 </resources>

@@ -41,19 +41,11 @@ public class SDhacksActivity extends Activity {
 		return true;
 	}
 	
-	public boolean checkPart(){
-		File f = new File("/dev/block/mmcblk1p2");
-		if(f.exists()){
-			return true;
-		}
-		else return false;
-	}
-	
 	public void install() {
 			//user is perssy4pie
 		
 		//check for partitioned sdcard
-		boolean check = checkPart();
+		boolean check = root_tools.fileExists("/dev/block/mmcblk1p2");
 		if(check == true) {
 			finish = true;
 			//if the card appears to be fine

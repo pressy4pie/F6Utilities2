@@ -17,6 +17,7 @@ import com.pressy4pie.f6utilities2.root_tools;
 public class RecoveryInstallerActivity extends Activity {
 	ProgressDialog barProgressDialog;
 	Handler updateBarHandler;
+	String tagname = "Recovery Install";
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -37,24 +38,22 @@ public class RecoveryInstallerActivity extends Activity {
 	void install(){
 		//we have to make sure the right aboot is used first...
 		String cmd_aboot = "busybox dd if=/data/data/com.pressy4pie.f6utilities2/recovery/aboot.img_e of=/dev/block/platform/msm_sdcc.1/by-name/aboot";
-		
-		//where the install will happen...
-		//im not using loki_flash because dd works fine and it eliminates aboot issues
-		
 		String cmd_install = "busybox dd if=/data/data/com.pressy4pie.f6utilities2/recovery/pressy4pie-cwm-unofficial-stock-data.lok of=/dev/block/platform/msm_sdcc.1/by-name/recovery";
 		
 		root_tools.execute(cmd_aboot);
 		root_tools.execute(cmd_install);
 		
+		//this toast will not show for some reason
+		/*
 		Context context = getApplicationContext();
 		CharSequence text = "CWM has been installed!";
 		int duration = Toast.LENGTH_SHORT;
 		Toast success = Toast.makeText(context, text, duration);
 		success.show();
-		
+		*/	
 	}
 	
-    //the method to start the root.
+    //The onclick that gets launched
 	public void start(View view) {
 		final ProgressDialog RingProgressDialog = ProgressDialog.show(RecoveryInstallerActivity.this, "Please Wait", "Installing CWM", true);
 		RingProgressDialog.setCancelable(false);
@@ -65,10 +64,9 @@ public class RecoveryInstallerActivity extends Activity {
 					//this is the runnable stuff for the progress bar
 					install();
 				} catch (Exception e) {
-					Log.e("root", "something went wrong");
+					Log.e(tagname, "something went wrong");
 				}
 				RingProgressDialog.dismiss();
-			
 		}
 	}).start();	
 	}
