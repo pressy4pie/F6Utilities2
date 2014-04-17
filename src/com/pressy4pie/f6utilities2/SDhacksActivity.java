@@ -7,6 +7,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.Handler;
 import android.app.Activity;
 import android.app.ProgressDialog;
@@ -24,14 +25,12 @@ public class SDhacksActivity extends Activity {
 	ProgressDialog barProgressDialog;
 	Handler updateBarHandler;
 	boolean finish = false;
+	String dir = Environment.getExternalStorageDirectory() + "/F6Utilities2/recovery";
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_sdhacks);	
-        File dir = new File ("/data/data/com.pressy4pie.f6utilities2/sdhack");
-        dir.mkdirs();
-        CopyAssets();
 	}
 	
 	@Override
@@ -42,22 +41,18 @@ public class SDhacksActivity extends Activity {
 	}
 	
 	public void install() {
-			//user is perssy4pie
-		
 		//check for partitioned sdcard
 		boolean check = root_tools.fileExists("/dev/block/mmcblk1p2");
 		if(check == true) {
-			finish = true;
 			//if the card appears to be fine
-			String kernelInstall = "busybox dd if=/data/data/com.pressy4pie.f6utilities2/sdhack/pressy4pie-sdhack-boot.lok of=/dev/block/platform/msm_sdcc.1/by-name/boot";
+			String kernelInstall = "busybox dd if=" + dir + "/pressy4pie-sdhack-boot.lok" + " of=/dev/block/platform/msm_sdcc.1/by-name/boot";
 			root_tools.execute(kernelInstall);
 			Log.i(tagname, "The sdcard hack boot image was installed.");
 			
-			String recoveryInstall = "busybox dd if=/data/data/com.pressy4pie.f6utilities2/sdhack/pressy4pie-cwm-unofficial-sd-data.lok of=/dev/block/platform/msm_sdcc.1/by-name/recovery";
+			String recoveryInstall = "busybox dd if=" + dir + "/pressy4pie-cwm-unofficial-sd-data.lok" + " of=/dev/block/platform/msm_sdcc.1/by-name/recovery";
 			root_tools.execute(recoveryInstall);
-			Log.i(tagname, "The CWM was also installed");
-
-			
+			Log.i(tagname, "The Custom CWM was also installed");
+			finish = true;
 		}
 		
 		else {
@@ -75,9 +70,7 @@ public class SDhacksActivity extends Activity {
 			@Override
 			public void run() {
 				try {
-					//this is the runnable stuff for the progress bar
 					install();
-					//respond();
 				} catch (Exception e) {
 					Log.e(tagname, "something went wrong");
 				}

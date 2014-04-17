@@ -3,6 +3,7 @@ package com.pressy4pie.f6utilities2;
 import java.io.File;
 
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.Handler;
 import android.app.Activity;
 import android.app.ProgressDialog;
@@ -36,8 +37,10 @@ public class RecoveryUninstallerActivity extends Activity {
 	}
 	
 	void install(){	
-		String cmd_install = "busybox dd if=/data/data/com.pressy4pie.f6utilities2/recovery/recovery.img.stock of=/dev/block/platform/msm_sdcc.1/by-name/recovery";
-		root_tools.execute(cmd_install);	
+		String dir = Environment.getExternalStorageDirectory() + "/F6Utilities2/recovery";
+		String cmd_install = "busybox dd if="+ dir + "/recovery.img.stock" + " of=/dev/block/platform/msm_sdcc.1/by-name/recovery";
+		root_tools.execute(cmd_install);
+		Log.i(tagname, "Stock Recovery restored.");
 	}
 	
     //the method to start the restore.

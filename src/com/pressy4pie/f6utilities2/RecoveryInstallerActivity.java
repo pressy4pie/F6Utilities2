@@ -1,12 +1,18 @@
 package com.pressy4pie.f6utilities2;
 
 import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.Handler;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.res.AssetManager;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
@@ -18,12 +24,12 @@ public class RecoveryInstallerActivity extends Activity {
 	ProgressDialog barProgressDialog;
 	Handler updateBarHandler;
 	String tagname = "Recovery Install";
+	String dir = Environment.getExternalStorageDirectory() + "/F6Utilities2/recovery";
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_recovery_installer);
-
 	}
 
 	@Override
@@ -37,20 +43,13 @@ public class RecoveryInstallerActivity extends Activity {
 	
 	void install(){
 		//we have to make sure the right aboot is used first...
-		String cmd_aboot = "busybox dd if=/data/data/com.pressy4pie.f6utilities2/recovery/aboot.img_e of=/dev/block/platform/msm_sdcc.1/by-name/aboot";
-		String cmd_install = "busybox dd if=/data/data/com.pressy4pie.f6utilities2/recovery/pressy4pie-cwm-unofficial-stock-data.lok of=/dev/block/platform/msm_sdcc.1/by-name/recovery";
+		String cmd_aboot = "busybox dd if=" + dir + "/aboot.img_e" + " of=/dev/block/platform/msm_sdcc.1/by-name/aboot";
+		String cmd_recovery = "busybox dd if="+ dir + "/pressy4pie-cwm-unofficial-stock-data.lok" + " of=/dev/block/platform/msm_sdcc.1/by-name/recovery";
 		
 		root_tools.execute(cmd_aboot);
-		root_tools.execute(cmd_install);
+		root_tools.execute(cmd_recovery);
 		
-		//this toast will not show for some reason
-		/*
-		Context context = getApplicationContext();
-		CharSequence text = "CWM has been installed!";
-		int duration = Toast.LENGTH_SHORT;
-		Toast success = Toast.makeText(context, text, duration);
-		success.show();
-		*/	
+		Log.i(tagname, "CWM was Installed");
 	}
 	
     //The onclick that gets launched
@@ -70,5 +69,4 @@ public class RecoveryInstallerActivity extends Activity {
 		}
 	}).start();	
 	}
-
 }

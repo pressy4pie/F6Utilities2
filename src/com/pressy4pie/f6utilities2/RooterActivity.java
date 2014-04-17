@@ -9,6 +9,7 @@ import java.io.InputStreamReader;
 import java.io.OutputStream;
 
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.Handler;
 import android.app.Activity;
 import android.app.ProgressDialog;
@@ -22,23 +23,18 @@ public class RooterActivity extends Activity {
 	ProgressDialog barProgressDialog;
 	Handler updateBarHandler;
 	String tagname = "GetRoot";
-
+	String dir = Environment.getExternalStorageDirectory() + "/F6Utilities2/saferoot";
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_rooter);
 		updateBarHandler = new Handler();
-
-		//create dirs to be copied to
-        File dir = new File ("/data/data/com.pressy4pie.f6utilities2/saferoot");
-        dir.mkdirs();
-        //copy the root files
-        CopyAssets();
         
-		root_tools.executeAsSH("chmod 0755 /data/data/com.pressy4pie.f6utilities2/saferoot/getroot_finish.sh");
-		root_tools.executeAsSH("chmod 0755 /data/data/com.pressy4pie.f6utilities2/saferoot/getroot_begin.sh");
-		root_tools.executeAsSH("chmod 0755 /data/data/com.pressy4pie.f6utilities2/saferoot/getroot");
+        //chmod some stuff
+		root_tools.executeAsSH("chmod 0755 " + dir + " /getroot_finish.sh");
+		root_tools.executeAsSH("chmod 0755 " + dir + " /getroot_begin.sh");
+		root_tools.executeAsSH("chmod 0755 " + dir + " /getroot");
 		
 	}
 	
@@ -52,16 +48,16 @@ public class RooterActivity extends Activity {
     //all the work for rooting
     public void getRoot(){
 		//set up directories && chmod
-		root_tools.executeAsSH("/data/data/com.pressy4pie.f6utilities2/saferoot/getroot_begin.sh");
+		root_tools.executeAsSH(dir + "/getroot_begin.sh");
 		Log.i(tagname, "getroot_begin.sh executed...");
 		Log.i(tagname, "Starting actual root now...");
 		
 		//the actual get root
-		root_tools.executeAsSH("/data/data/com.pressy4pie.f6utilities2/saferoot/getroot");
+		root_tools.executeAsSH(dir + "/getroot");
 		Log.i(tagname, "getroot executed...");
 		
 		//clean up
-		root_tools.executeAsSH("/data/data/com.pressy4pie.f6utilities2/saferoot/getroot_finish.sh");
+		root_tools.executeAsSH(dir + "/getroot_finish.sh");
 		Log.i(tagname, "getroot_finish.sh executed...");
 		
 	}

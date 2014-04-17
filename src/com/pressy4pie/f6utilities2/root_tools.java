@@ -1,4 +1,5 @@
 package com.pressy4pie.f6utilities2;
+import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
 import java.io.File;
@@ -7,16 +8,22 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
+import java.net.URL;
+import java.net.URLConnection;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Environment;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.res.AssetManager;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
+import net.lingala.zip4j.exception.ZipException;
+import net.lingala.zip4j.core.ZipFile;
 //thanks to DF1E for his SimpleExplorer and this code own thur
 
 /*
@@ -156,7 +163,17 @@ public class root_tools {
 		
 	}
 	
+	public static void unzip(String source, String destination) {
+		//shoutout to zip4j  
+		    try {
+		         ZipFile zipFile = new ZipFile(source);
+		         
+		         zipFile.extractAll(destination);
+		         
+		    } catch (ZipException e) {
+		        e.printStackTrace();
+		    }
+		
+	}
+	
 }
-	
-	
-
