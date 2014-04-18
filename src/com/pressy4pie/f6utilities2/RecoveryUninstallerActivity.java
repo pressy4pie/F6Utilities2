@@ -1,17 +1,13 @@
 package com.pressy4pie.f6utilities2;
 
-import java.io.File;
-
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
 import android.app.Activity;
 import android.app.ProgressDialog;
-import android.content.Context;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
-import android.widget.Toast;
 import com.pressy4pie.f6utilities2.root_tools;
 
 

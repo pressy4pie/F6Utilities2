@@ -1,20 +1,10 @@
 package com.pressy4pie.f6utilities2;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.OutputStream;
-
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
 import android.app.Activity;
 import android.app.ProgressDialog;
-import android.content.Intent;
-import android.content.res.AssetManager;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
@@ -80,44 +70,6 @@ public class RooterActivity extends Activity {
 		}
 	}).start();	
 	}
-	
-	//method to copy assets from "saferoot"
-		private void CopyAssets() {
-	        AssetManager assetManager = getAssets();
-	        String[] files = null;
-	        try {
-	            files = assetManager.list("saferoot");
-	        } catch (IOException e) {
-	            Log.e("Asset Copy", e.getMessage());
-	        }
-
-	        for(String filename : files) {
-	            System.out.println("File name => "+filename);
-	            InputStream in = null;
-	            OutputStream out = null;
-	            try {
-	              in = assetManager.open("saferoot/"+filename);   // if files resides inside the "Files" directory itself
-	              out = new FileOutputStream("/data/data/com.pressy4pie.f6utilities2/saferoot/" + filename);
-	              copyFile(in, out);
-	              in.close();
-	              in = null;
-	              out.flush();
-	              out.close();
-	              out = null;
-	            } catch(Exception e) {
-	                Log.e("Asset Copy", e.getMessage());
-	            }
-	        }
-	    }
-	    private void copyFile(InputStream in, OutputStream out) throws IOException {
-	        byte[] buffer = new byte[1024];
-	        int read;
-	        while((read = in.read(buffer)) != -1){
-	          out.write(buffer, 0, read);
-	        }
-	    }
-	    
-
 }
 
 

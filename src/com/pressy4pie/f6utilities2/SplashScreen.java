@@ -4,7 +4,6 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -12,10 +11,8 @@ import java.net.URL;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
-import android.os.Handler;
 import android.app.Activity;
 import android.content.Intent;
-import android.content.res.AssetManager;
 import android.util.Log;
 //import android.view.Menu;
 import android.widget.ProgressBar;
@@ -25,7 +22,6 @@ public class SplashScreen extends Activity {
 	String tagname = "download";
 	private ProgressBar progressBar;
 	 private int progressStatus = 0;
-	 private Handler handler = new Handler();
 
 
 	@Override

@@ -1,22 +1,13 @@
 package com.pressy4pie.f6utilities2;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
 import android.app.Activity;
 import android.app.ProgressDialog;
-import android.content.Context;
-import android.content.res.AssetManager;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
-import android.widget.Toast;
 import com.pressy4pie.f6utilities2.root_tools;
 
 
