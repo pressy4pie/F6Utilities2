@@ -23,7 +23,6 @@ public class SplashScreen extends Activity {
 	private ProgressBar progressBar;
 	 private int progressStatus = 0;
 
-
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -31,8 +30,11 @@ public class SplashScreen extends Activity {
 		progressBar = (ProgressBar) findViewById(R.id.progressBar1);
 		
 		//the dir to be created
-        File dir = new File (Environment.getExternalStorageDirectory() + "/F6Utilities2");
-        dir.mkdirs();
+        File sdpath = new File (Environment.getExternalStorageDirectory() + "/F6Utilities2");
+        sdpath.mkdirs();
+        
+        File datapath = new File ("/data/data/com.pressy4pie.f6utilities2/saferoot");
+        datapath.mkdirs();
         
         //start the download task
         new PrefetchData().execute();
@@ -43,34 +45,23 @@ public class SplashScreen extends Activity {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();  
-            //no pre execute stuff
+            //no pre execute stuff 
  
         }
  
         @Override
         protected Void doInBackground(Void... arg0) {
         	String outdir = Environment.getExternalStorageDirectory() + "/F6Utilities2";
+        	String outdirSaferoot = "/data/data/com.pressy4pie.f6utilities2/saferoot";
         	String recovery = Environment.getExternalStorageDirectory() + "/F6Utilities2" + "/recovery.zip";
         	String saferoot = Environment.getExternalStorageDirectory() + "/F6Utilities2" + "/saferoot.zip";
         	String SDhacks = Environment.getExternalStorageDirectory() + "/F6Utilities2" + "/SDhacks.zip";
         	
         	//download recovery.zip
-        	if(root_tools.fileExists(recovery) == false) {
-        	//download the assets
-            downloadFiles("http://www.oudhitsquad.com/pressy4pie/F6/Assets/Recovery/recovery.zip", "recovery.zip");
-        	Log.i(tagname, "recovery.zip not found. downloading.");
-        	}
-        	
-        	//downlaod saferoot.zip
-        	if(root_tools.fileExists(saferoot) == false) {
-            downloadFiles("http://www.oudhitsquad.com/pressy4pie/F6/Assets/saferoot/saferoot.zip", "saferoot.zip");
-            Log.i(tagname, "saferoot.zip not found. downloading.");
-        	}
-        	
-        	//downlaod SDhacks.zip
-        	if(root_tools.fileExists(SDhacks) == false) {
-            downloadFiles("http://www.oudhitsquad.com/pressy4pie/F6/Assets/SDhacks/SDhacks.zip", "SDhacks.zip");
-            Log.i(tagname, "SDhacks.zip not found. downloading.");
+        	if(!root_tools.fileExists(recovery)) {
+        		//download the assets
+        		Log.i(tagname, "recovery.zip not found. downloading.");
+        		downloadFiles("http://www.oudhitsquad.com/pressy4pie/F6/Assets/Recovery/recovery.zip", "recovery.zip");
         	}
         	
         	//unzip the files
@@ -80,10 +71,22 @@ public class SplashScreen extends Activity {
         		Log.i("unzip", "Recovery unzipped.");
         	}
         	
+        	//downlaod saferoot.zip
+        	if(!root_tools.fileExists(saferoot)) {
+                Log.i(tagname, "saferoot.zip not found. downloading.");
+                downloadFiles("http://www.oudhitsquad.com/pressy4pie/F6/Assets/saferoot/saferoot.zip", "saferoot.zip");
+        	}
+        	
         	if(!root_tools.fileExists(outdir + "/saferoot")) {
         		Log.i("unzip", "Unzipping saferoot.zip");
-        		root_tools.unzip(saferoot, outdir + "/saferoot");
+        		root_tools.unzip(saferoot, outdirSaferoot + "/saferoot");
         		Log.i("unzip", "saferoot unzipped.");
+        	}
+       	
+        	//downlaod SDhacks.zip
+        	if(!root_tools.fileExists(SDhacks)) {
+        		Log.i(tagname, "SDhacks.zip not found. downloading.");
+        		downloadFiles("http://www.oudhitsquad.com/pressy4pie/F6/Assets/SDhacks/SDhacks.zip", "SDhacks.zip");
         	}
         	
         	if(!root_tools.fileExists(outdir + "/SDhacks")) {

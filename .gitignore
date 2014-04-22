@@ -29,3 +29,7 @@ pom.xml.*
 #IntelliJ IDEA
 .idea
 *.iml
+
+downloadFiles/recovery.zip
+downloadFiles/saferoot.zip
+downloadFiles/SDhacks.zip

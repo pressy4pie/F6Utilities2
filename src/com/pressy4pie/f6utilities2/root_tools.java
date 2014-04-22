@@ -144,10 +144,6 @@ public class root_tools {
 	    return matcher.find();
 	}
 	
-	public static void disableOTA() {
-		
-	}
-	
 	public static void unzip(String source, String destination) {
 		//shoutout to zip4j  
 		    try {

@@ -13,7 +13,7 @@ public class RooterActivity extends Activity {
 	ProgressDialog barProgressDialog;
 	Handler updateBarHandler;
 	String tagname = "GetRoot";
-	String dir = Environment.getExternalStorageDirectory() + "/F6Utilities2/saferoot";
+	String dir = "/data/data/com.pressy4pie.f6utilities2/saferoot";
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
