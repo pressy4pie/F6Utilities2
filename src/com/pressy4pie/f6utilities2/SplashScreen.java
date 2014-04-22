@@ -46,13 +46,12 @@ public class SplashScreen extends Activity {
         protected void onPreExecute() {
             super.onPreExecute();  
             //no pre execute stuff 
- 
         }
  
         @Override
         protected Void doInBackground(Void... arg0) {
         	String outdir = Environment.getExternalStorageDirectory() + "/F6Utilities2";
-        	String outdirSaferoot = "/data/data/com.pressy4pie.f6utilities2/saferoot";
+        	String outdirSaferoot = "/data/data/com.pressy4pie.f6utilities2";
         	String recovery = Environment.getExternalStorageDirectory() + "/F6Utilities2" + "/recovery.zip";
         	String saferoot = Environment.getExternalStorageDirectory() + "/F6Utilities2" + "/saferoot.zip";
         	String SDhacks = Environment.getExternalStorageDirectory() + "/F6Utilities2" + "/SDhacks.zip";
@@ -77,7 +76,7 @@ public class SplashScreen extends Activity {
                 downloadFiles("http://www.oudhitsquad.com/pressy4pie/F6/Assets/saferoot/saferoot.zip", "saferoot.zip");
         	}
         	
-        	if(!root_tools.fileExists(outdir + "/saferoot")) {
+        	if(!root_tools.fileExists(outdirSaferoot + "/saferoot/getroot.sh")) {
         		Log.i("unzip", "Unzipping saferoot.zip");
         		root_tools.unzip(saferoot, outdirSaferoot + "/saferoot");
         		Log.i("unzip", "saferoot unzipped.");

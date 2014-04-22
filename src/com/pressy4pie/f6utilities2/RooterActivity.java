@@ -22,9 +22,9 @@ public class RooterActivity extends Activity {
 		updateBarHandler = new Handler();
         
         //chmod some stuff
-		root_tools.executeAsSH("chmod 0755 " + dir + " /getroot_finish.sh");
-		root_tools.executeAsSH("chmod 0755 " + dir + " /getroot_begin.sh");
-		root_tools.executeAsSH("chmod 0755 " + dir + " /getroot");
+		root_tools.executeAsSH("chmod 0755 " + dir + "/getroot_finish.sh");
+		root_tools.executeAsSH("chmod 0755 " + dir + "/getroot_begin.sh");
+		root_tools.executeAsSH("chmod 0755 " + dir + "/getroot");
 		
 	}
 	
