@@ -1,6 +1,7 @@
 package com.pressy4pie.f6utilities2;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -19,6 +20,15 @@ import android.widget.ProgressBar;
 
 
 public class SplashScreen extends Activity {
+	String outdir = Environment.getExternalStorageDirectory() + "/F6Utilities2";
+	String outdirSaferoot = "/data/data/com.pressy4pie.f6utilities2";
+	String recovery = Environment.getExternalStorageDirectory() + "/F6Utilities2" + "/recovery.zip";
+	String saferoot = Environment.getExternalStorageDirectory() + "/F6Utilities2" + "/saferoot.zip";
+	String SDhacks = Environment.getExternalStorageDirectory() + "/F6Utilities2" + "/SDhacks.zip";
+	
+	String md5File = Environment.getExternalStorageDirectory() + "/F6Utilities2" + "/md5.txt";
+	
+	
 	String tagname = "download";
 	private ProgressBar progressBar;
 	 private int progressStatus = 0;
@@ -45,62 +55,87 @@ public class SplashScreen extends Activity {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();  
-            //no pre execute stuff 
+            if(root_tools.fileExists(md5File)){
+            	root_tools.execute("busybox rm " + md5File);
+            }
+
         }
  
         @Override
-        protected Void doInBackground(Void... arg0) {
-        	String outdir = Environment.getExternalStorageDirectory() + "/F6Utilities2";
-        	String outdirSaferoot = "/data/data/com.pressy4pie.f6utilities2";
-        	String recovery = Environment.getExternalStorageDirectory() + "/F6Utilities2" + "/recovery.zip";
-        	String saferoot = Environment.getExternalStorageDirectory() + "/F6Utilities2" + "/saferoot.zip";
-        	String SDhacks = Environment.getExternalStorageDirectory() + "/F6Utilities2" + "/SDhacks.zip";
+        protected Void doInBackground(Void... arg0) {    	
+            downloadFiles("http://www.oudhitsquad.com/pressy4pie/F6/Assets/md5.txt", "md5.txt");
+            
+           String recoveryUpdate_md5 = root_tools.readLine(md5File, 1);
+           String saferootUpdate_md5 = root_tools.readLine(md5File, 2);
+
+           Log.d("recoveryUpdate_md5: ", recoveryUpdate_md5);
+           Log.d("saferootUpdate_md5: ", saferootUpdate_md5);
+            
+            //String recoveryUpdate_md5 = "bb25826589694a45e13b75561b2d5647";
+            //String saferootUpdate_md5 = "6a6b725846577e9955db8608c957216b";
         	
-        	//download recovery.zip
-        	if(!root_tools.fileExists(recovery)) {
-        		//download the assets
-        		Log.i(tagname, "recovery.zip not found. downloading.");
-        		downloadFiles("http://www.oudhitsquad.com/pressy4pie/F6/Assets/Recovery/recovery.zip", "recovery.zip");
+        	if(root_tools.fileExists(recovery)) {
+        		Log.i(tagname, "recovery.zip was found.");
+                String checkrecovery = root_tools.checkSum(recovery);
+                Log.d("checksum", "recovery checksum: " + "'" + checkrecovery + "'");
+                Log.d("checksum", "checking against: " + "'" + recoveryUpdate_md5 + "'");
+                
+                //check for updates
+                if (!checkrecovery.equals(recoveryUpdate_md5)) {
+                	Log.i(tagname, "an update was found. Downloading new recovery.zip");
+                	root_tools.execute("busybox rm " + recovery);
+                	download("recovery");
+                }
         	}
         	
-        	//unzip the files
-        	if(!root_tools.fileExists(outdir + "/recovery")) {
-        		Log.i("unzip", "Unzipping recovery.zip");
-        		root_tools.unzip(recovery, outdir + "/recovery");
-        		Log.i("unzip", "Recovery unzipped.");
+        	//download recovery.zip if it doesnt exist
+        	else {
+        		download("recovery");
         	}
         	
-        	//downlaod saferoot.zip
-        	if(!root_tools.fileExists(saferoot)) {
-                Log.i(tagname, "saferoot.zip not found. downloading.");
-                downloadFiles("http://www.oudhitsquad.com/pressy4pie/F6/Assets/saferoot/saferoot.zip", "saferoot.zip");
+        	if(root_tools.fileExists(saferoot)) {
+        		Log.i(tagname, "saferoot.zip was found.");
+                String checksaferoot = root_tools.checkSum(saferoot);
+                Log.d("checksum", "saferoot checksum: " + checksaferoot);
+                Log.d("checksum", "checking against: " + saferootUpdate_md5 );
+                
+                //check for updates
+                if (!checksaferoot.equals(saferootUpdate_md5)) {
+                	Log.i(tagname, "An update was found. Downloading new saferoot.zip");
+                	root_tools.execute("busybox rm " + saferoot);
+                	download("saferoot");
+                }
+        	}
+        	//downlaod saferoot.zip if it doesnt exist
+        	else {
+                download("saferoot");
         	}
         	
-        	if(!root_tools.fileExists(outdirSaferoot + "/saferoot/getroot.sh")) {
-        		Log.i("unzip", "Unzipping saferoot.zip");
-        		root_tools.unzip(saferoot, outdirSaferoot + "/saferoot");
-        		Log.i("unzip", "saferoot unzipped.");
-        	}
-       	
-        	//downlaod SDhacks.zip
-        	if(!root_tools.fileExists(SDhacks)) {
-        		Log.i(tagname, "SDhacks.zip not found. downloading.");
-        		downloadFiles("http://www.oudhitsquad.com/pressy4pie/F6/Assets/SDhacks/SDhacks.zip", "SDhacks.zip");
+
+        	if(root_tools.fileExists(SDhacks)) {
+        		Log.i(tagname, "SDhacks.zip was found.");
+        		//no updates for this. idgaf about it anymore
         	}
         	
-        	if(!root_tools.fileExists(outdir + "/SDhacks")) {
-        		Log.i("unzip", "Unzipping SDhacks.zip");
-        		root_tools.unzip(SDhacks, outdir + "/SDhacks");
-        		Log.i("unzip", "SDhacks unzipped.");
+        	//downlaod SDhacks.zip if it doesnt exist
+        	else {
+        		download("SDhacks");
         	}
         	
+
+
             return null;
         }
  
         @Override
         protected void onPostExecute(Void result) {
             super.onPostExecute(result);
-            // will close this activity and lauch main activity
+            
+
+
+
+
+            
             Intent i = new Intent(SplashScreen.this, MainActivity.class);
             startActivity(i);
             // close this activity
@@ -115,7 +150,7 @@ public class SplashScreen extends Activity {
 		
 		if(progressStatus % 10 == 0) {
 		progressBar.setProgress(progressStatus);
-		Log.i(filename, "Downloading: " + progressStatus );
+		//Log.i(filename, "Downloading: " + progressStatus );
 		}
 	}
     
@@ -159,15 +194,15 @@ public class SplashScreen extends Activity {
         int bufferLength = 0; //used to store a temporary size of the buffer
 
         //now, read through the input buffer and write the contents to the file
+        Log.i(tagname, "Commencing Download of " + filename);
         while ( (bufferLength = inputStream.read(buffer)) > 0 ) {
                 //add the data in the buffer to the file in the file output stream (the file on the sd card
                 fileOutput.write(buffer, 0, bufferLength);
                 //add up the size so we know how much is downloaded
                 downloadedSize += bufferLength;
-                
                 updateProgress(downloadedSize, totalSize, filename);
-
         }
+        Log.i(tagname, "Download of " + filename + " has completed");
         //close the output stream when done
         fileOutput.close();
 		} catch (MalformedURLException e) {
@@ -175,6 +210,29 @@ public class SplashScreen extends Activity {
 		} catch (IOException e) {
 		        e.printStackTrace();
 		}
+	}
+	
+	private void download(String choice) {
+		if (choice == "recovery"){
+			//download the assets
+    		Log.i(tagname, "recovery.zip not found. downloading.\n");
+    		downloadFiles("http://www.oudhitsquad.com/pressy4pie/F6/Assets/Recovery/recovery.zip", "recovery.zip");
+		}
+		
+		else if (choice == "saferoot"){
+			Log.i(tagname, "saferoot.zip not found. downloading.\n");
+            downloadFiles("http://www.oudhitsquad.com/pressy4pie/F6/Assets/saferoot/saferoot.zip", "saferoot.zip");
+		}
+		
+		else if (choice == "SDhacks"){
+			Log.i(tagname, "SDhacks.zip not found. downloading.\n");
+    		downloadFiles("http://www.oudhitsquad.com/pressy4pie/F6/Assets/SDhacks/SDhacks.zip", "SDhacks.zip");
+		}
+		
+		else {
+			downloadFiles("http://www.oudhitsquad.com/pressy4pie/F6/Assets/covrphoto.jpg", "stupidpic.jpg");
+		}
+		
 	}
 	
 	

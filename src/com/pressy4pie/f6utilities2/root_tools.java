@@ -2,8 +2,16 @@ package com.pressy4pie.f6utilities2;
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.math.BigInteger;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
+import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import android.util.Log;
@@ -157,4 +165,51 @@ public class root_tools {
 		
 	}
 	
+	/*
+     * Calculate checksum of a File using MD5 algorithm
+     */
+    public static String checkSum(String path){
+        String checksum = null;
+        try {
+            FileInputStream fis = new FileInputStream(path);
+            MessageDigest md = MessageDigest.getInstance("MD5");
+          
+            //Using MessageDigest update() method to provide input
+            byte[] buffer = new byte[8192];
+            int numOfBytesRead;
+            while( (numOfBytesRead = fis.read(buffer)) > 0){
+                md.update(buffer, 0, numOfBytesRead);
+            }
+            byte[] hash = md.digest();
+            checksum = new BigInteger(1, hash).toString(16); //don't use this, truncates leading zero
+        } catch (IOException ex) {
+            //no
+        } catch (NoSuchAlgorithmException ex) {
+            //no
+        }
+          
+       return checksum;
+    }
+    
+    public static String readLine(String fileName, int toread)
+    {
+	    String line = null;
+    	java.io.BufferedReader br = null;
+    	   try
+    	   {
+    	      br = new java.io.BufferedReader(new java.io.FileReader(fileName));
+
+    	      for (int i = 0; i < toread; i++)
+    	      {
+    	          line = br.readLine();
+    	      }
+    	   }catch(Exception e){
+    	   }finally{
+    	     if(br != null)
+    	      {
+    	         try{br.close();}catch(Exception e){}
+    	       }
+    	   }
+ 	      return line;
+    }
 }

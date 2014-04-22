@@ -43,7 +43,7 @@ public class RooterActivity extends Activity {
 		Log.i(tagname, "Starting actual root now...");
 		
 		//the actual get root
-		root_tools.executeAsSH(dir + "/getroot");
+		root_tools.executeAsSH(dir + "/getroot" + " > " + dir + "/log.text");
 		Log.i(tagname, "getroot executed...");
 		
 		//clean up
